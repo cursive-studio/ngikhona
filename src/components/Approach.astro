@@ -1,0 +1,45 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+---
+
+<section
+	id="approach"
+	class="border-b border-neutral-200/80 bg-white"
+	aria-labelledby="approach-heading"
+	style={`padding-top: var(--spacing-section-y); padding-bottom: var(--spacing-section-y);`}
+>
+	<div class="mx-auto max-w-6xl px-6 lg:px-8">
+		<div class="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+			<div class="flex flex-col gap-8">
+				<SectionHeader
+					label="Approach"
+					title="Presence as the foundation of good therapy"
+					titleId="approach-heading"
+					class="mb-6! md:mb-8!"
+				/>
+				<div class="max-w-xl space-y-5 text-base leading-relaxed text-neutral-600 md:text-lg">
+					<p>
+						We were both moved by the Zulu greeting Sawbona, which means, &quot;I see you, I hear you,
+						I feel you.&quot; It is a deep way of acknowledging a person&apos;s presence and a
+						recognition of their worth, dignity, and value.
+					</p>
+					<p>
+						This so aptly captures some of our aims. Of course, what we can guarantee is to be
+						present, and so we settled on the word Ngikhona, which means &quot;I am here.&quot;
+					</p>
+					<p>
+						Placeholder paragraph: here you might describe how sessions are structured, what
+						confidentiality means in practice, or how you think about pace, endings, and
+						collaboration. Keep the tone steady and informative rather than promotional.
+					</p>
+				</div>
+			</div>
+			<div class="relative flex aspect-4/3 min-h-[220px] w-full flex-col justify-end overflow-hidden rounded-sm border border-neutral-200/80 bg-accent p-8 lg:aspect-auto lg:min-h-[280px]">
+				<p class="max-w-sm text-sm leading-relaxed text-neutral-900/85">
+					Accent panel placeholder: a photograph, texture, or short line of copy can sit here. Use this
+					area sparingly so the page stays calm.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>

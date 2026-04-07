@@ -1,0 +1,61 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+
+const members = [
+	{
+		name: "Anthea Benjamin",
+		role: "Child and adolescent psychotherapist",
+		bio: "Dummy biography: training background, professional registrations, and areas of clinical interest can be summarised here in two to four sentences. Replace with accurate credentials and a warm, factual tone.",
+	},
+	{
+		name: "Maxine Dennis",
+		role: "Psychotherapist",
+		bio: "Dummy biography: include therapeutic orientation, languages spoken if relevant, and the kinds of difficulties you most often work with. Avoid superlatives; clarity and steadiness read better on a practice site.",
+	},
+];
+---
+
+<section
+	id="team"
+	aria-labelledby="team-heading"
+	class="border-b border-neutral-200/80 bg-neutral-50"
+	style={`padding-top: var(--spacing-section-y); padding-bottom: var(--spacing-section-y);`}
+>
+	<div class="mx-auto max-w-6xl px-6 lg:px-8">
+		<SectionHeader
+			label="The team"
+			title="Who we are"
+			titleId="team-heading"
+			class="mb-5! md:mb-6!"
+		/>
+		<p class="mb-12 max-w-2xl text-base leading-relaxed text-neutral-600 md:mb-14 md:text-lg">
+			Placeholder introduction: a short line about how the team works together, supervision, and what
+			shared values shape the practice helps visitors orient before they read individual profiles.
+		</p>
+		<div class="grid gap-14 md:grid-cols-2 md:gap-12 lg:gap-16">
+			{
+				members.map((member) => (
+					<article class="flex flex-col gap-6">
+						<div
+							class="flex aspect-3/4 w-full max-w-md flex-col items-center justify-center rounded-sm border border-neutral-200 bg-neutral-200/80 p-6 text-center"
+							role="img"
+							aria-label={`Portrait placeholder for ${member.name}`}
+						>
+							<span class="text-xs font-medium tracking-widest text-neutral-500 uppercase">
+								Photo placeholder
+							</span>
+							<span class="mt-2 text-sm text-neutral-500">
+								Headshot or illustrated portrait can replace this block.
+							</span>
+						</div>
+						<div class="flex max-w-prose flex-col gap-2">
+							<h3 class="text-xl font-semibold text-neutral-900">{member.name}</h3>
+							<p class="text-sm font-medium text-neutral-500">{member.role}</p>
+							<p class="text-base leading-relaxed text-neutral-600">{member.bio}</p>
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>

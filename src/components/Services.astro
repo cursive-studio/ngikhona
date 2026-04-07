@@ -1,0 +1,75 @@
+---
+import "@fontsource-variable/newsreader";
+import SectionHeader from "./SectionHeader.astro";
+
+const items = [
+	{
+		title: "1:1 Therapy",
+		body: "Individual psychotherapy in a thoughtful, confidential space, tailored to your pace, needs, and circumstances.",
+		imageSrc: "/images/services/1-1-photo.jpg",
+		imageAlt: "Calm consulting room set up for one-to-one psychotherapy.",
+		// tags: ["Confidential", "Individual", "Pace-led"],
+	},
+	{
+		title: "Group Therapy",
+		body: "Facilitated therapeutic groups that support reflection, connection, and learning in relation with others.",
+		imageSrc: "/images/hero-2.jpg",
+		imageAlt: "Placeholder image representing group connection and shared space.",
+		// tags: ["Shared reflection", "Facilitated", "Community"],
+	},
+	{
+		title: "Child Psychotherapy",
+		body: "Psychotherapeutic support for children and young people, held with care, curiosity, and developmental understanding.",
+		imageSrc: "/images/services/child-therapy-2.jpg",
+		imageAlt: "Child-friendly materials and a gentle therapeutic setting.",
+		// tags: ["Young people", "Developmental", "Playful"],
+	},
+	{
+		title: "Body Work",
+		body: "Body-based therapeutic work that attends to how emotional life is experienced, held, and expressed physically.",
+		imageSrc: "/images/services/body.jpg",
+		imageAlt: "Space and atmosphere suited to embodied therapeutic work.",
+		// tags: ["Embodied", "Somatic", "Grounding"],
+	},
+];
+---
+
+<section
+	id="services"
+	class="border-b border-neutral-200/80 bg-white"
+	aria-labelledby="services-heading"
+	style={`padding-top: var(--spacing-section-y); padding-bottom: var(--spacing-section-y);`}
+>
+	<div class="mx-auto max-w-6xl px-6 lg:px-8">
+		<SectionHeader
+			label="Services"
+			title="What we offer"
+			titleId="services-heading"
+			class="mb-5! md:mb-6!"
+		/>
+		<div class="grid gap-8 sm:grid-cols-2 lg:gap-4 xl:grid-cols-4">
+			{
+				items.map((item) => (
+					<article class="flex flex-col overflow-hidden rounded-sm border border-neutral-200/80 bg-white shadow-sm">
+						<div class="aspect-4/3 w-full shrink-0 overflow-hidden bg-neutral-100">
+							<img
+								src={item.imageSrc}
+								alt={item.imageAlt}
+								class="h-full w-full object-cover"
+								loading="lazy"
+								decoding="async"
+							/>
+						</div>
+						<div class="flex flex-1 flex-col gap-4 p-5 md:p-6">
+							<h3 class="font-serif text-xl font-normal leading-snug text-neutral-900 md:text-2xl">
+								{item.title}
+							</h3>
+							<p class="text-sm leading-relaxed text-neutral-600 md:text-base">{item.body}</p>
+							
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>

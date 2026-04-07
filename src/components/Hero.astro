@@ -1,0 +1,61 @@
+---
+import Button from "./Button.astro";
+
+const heroImage = {
+	src: "/images/hero-2.jpg",
+	alt: "Warm, calm interior of a therapy consulting space in South London.",
+};
+---
+
+<section
+	id="top"
+	class="border-b border-neutral-200/80 bg-white"
+	aria-labelledby="hero-heading"
+	style={`padding-top: var(--spacing-section-y); padding-bottom: var(--spacing-section-y);`}
+>
+	<div class="mx-auto max-w-6xl px-6 lg:px-8">
+		<div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+			<div class="flex max-w-2xl flex-col gap-10">
+				<h1
+					id="hero-heading"
+					class="text-4xl font-semibold leading-[1.12] tracking-tight text-neutral-900 md:text-5xl lg:text-6xl"
+				>
+					Psychotherapy services in South London with{" "}
+					<span class="underline decoration-neutral-300 decoration-2 underline-offset-[0.2em]"
+						>Ngikhona</span
+					>
+				</h1>
+				<div class="flex max-w-xl flex-col gap-5 text-lg leading-relaxed text-neutral-600">
+					<p class="text-base leading-relaxed text-neutral-600">
+						We aim to provide a service to the community in South London, where we have worked
+						for some while. Ngikhona means &quot;I am here&quot;: to be present with another with
+						the fullness of their identity.
+					</p>
+				</div>
+				<!-- <blockquote class="border-l-2 border-neutral-200 pl-5 text-base font-light leading-relaxed text-neutral-600 md:text-lg">
+					<p class="text-xs leading-relaxed text-neutral-600">
+						We were moved by the Zulu greeting Sawbona, meaning &quot;I see you, I hear you, I feel
+						you&quot;: a deep acknowledgement of presence, worth, dignity, and value.
+					</p>
+				</blockquote> -->
+				<div class="flex flex-wrap gap-4">
+					<Button href="#services">Our services</Button>
+					<Button href="#contact" variant="outline">Get in touch</Button>
+				</div>
+			</div>
+
+			<div class="w-full lg:justify-self-end">
+				<figure class="m-0 overflow-hidden rounded-sm border border-neutral-200/80 bg-neutral-100 shadow-sm">
+					<img
+						src={heroImage.src}
+						alt={heroImage.alt}
+						class="aspect-4/3 h-auto w-full object-cover lg:aspect-4/5 lg:max-h-[min(640px,70vh)] lg:min-h-[360px]"
+						loading="eager"
+						decoding="async"
+						fetchpriority="high"
+					/>
+				</figure>
+			</div>
+		</div>
+	</div>
+</section>

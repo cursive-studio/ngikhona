@@ -1,0 +1,101 @@
+---
+import Button from "./Button.astro";
+
+interface RoomDetail {
+	label: string;
+	value: string;
+}
+
+interface Props {
+	title: string;
+	description: string;
+	details: RoomDetail[];
+	/** When true, image stack is on the left (room one). When false, images on the right (room two). */
+	imagesFirst?: boolean;
+}
+
+const { title, description, details, imagesFirst = true } = Astro.props;
+---
+
+<section class="border-b border-neutral-200/60 bg-neutral-100">
+	<div
+		class="mx-auto max-w-6xl px-6 lg:px-8"
+		style={`padding-top: var(--spacing-section-y); padding-bottom: var(--spacing-section-y);`}
+	>
+		<div class="grid items-start gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+			{
+				imagesFirst ? (
+					<>
+						<div class="flex flex-col gap-4">
+							{[1, 2, 3].map((i) => (
+								<div
+									class="aspect-square w-full max-w-md rounded-sm border border-neutral-200 bg-white shadow-sm"
+									role="img"
+									aria-label={`Photograph placeholder ${i} for ${title}`}
+								/>
+							))}
+						</div>
+						<div class="flex flex-col gap-8">
+							<h2 class="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl lg:text-5xl">
+								{title}
+							</h2>
+							<p class="max-w-xl text-base leading-relaxed text-neutral-600 md:text-lg">
+								{description}
+							</p>
+							<dl class="grid max-w-lg grid-cols-2 gap-x-8 gap-y-6">
+								{details.map((d) => (
+									<div>
+										<dt class="text-xs font-medium tracking-widest text-neutral-500 uppercase">
+											{d.label}
+										</dt>
+										<dd class="mt-1.5 text-base text-neutral-900">{d.value}</dd>
+									</div>
+								))}
+							</dl>
+							<div class="pt-2">
+								<Button href="#enquire" variant="outline" class="w-full min-w-48 justify-center sm:w-auto">
+									Check availability
+								</Button>
+							</div>
+						</div>
+					</>
+				) : (
+					<>
+						<div class="flex flex-col gap-8">
+							<h2 class="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl lg:text-5xl">
+								{title}
+							</h2>
+							<p class="max-w-xl text-base leading-relaxed text-neutral-600 md:text-lg">
+								{description}
+							</p>
+							<dl class="grid max-w-lg grid-cols-2 gap-x-8 gap-y-6">
+								{details.map((d) => (
+									<div>
+										<dt class="text-xs font-medium tracking-widest text-neutral-500 uppercase">
+											{d.label}
+										</dt>
+										<dd class="mt-1.5 text-base text-neutral-900">{d.value}</dd>
+									</div>
+								))}
+							</dl>
+							<div class="pt-2">
+								<Button href="#enquire" variant="outline" class="w-full min-w-48 justify-center sm:w-auto">
+									Check availability
+								</Button>
+							</div>
+						</div>
+						<div class="flex flex-col gap-4">
+							{[1, 2, 3].map((i) => (
+								<div
+									class="aspect-square w-full max-w-md justify-self-end rounded-sm border border-neutral-200 bg-white shadow-sm lg:ml-auto"
+									role="img"
+									aria-label={`Photograph placeholder ${i} for ${title}`}
+								/>
+							))}
+						</div>
+					</>
+				)
+			}
+		</div>
+	</div>
+</section>

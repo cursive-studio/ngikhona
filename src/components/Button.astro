@@ -1,0 +1,22 @@
+---
+interface Props {
+	href: string;
+	variant?: "solid" | "outline";
+	class?: string;
+}
+
+const { href, variant = "solid", class: className = "" } = Astro.props;
+
+const base =
+	"inline-flex items-center justify-center px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900";
+
+const variants = {
+	solid: "bg-neutral-900 text-white hover:bg-neutral-800",
+	outline:
+		"border border-neutral-900 bg-transparent text-neutral-900 hover:bg-neutral-900 hover:text-white",
+} as const;
+---
+
+<a href={href} class:list={[base, variants[variant], className]}>
+	<slot />
+</a>

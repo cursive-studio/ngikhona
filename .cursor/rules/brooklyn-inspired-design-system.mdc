@@ -1,0 +1,48 @@
+---
+description: Brooklyn-inspired but calmer visual design guidance for Ngikhona
+alwaysApply: true
+---
+
+# Ngikhona Design System
+
+- Base the site on Brooklyn Org's editorial clarity and modular section rhythm, but adapt it for therapy: calmer, softer, quieter, and more reassuring.
+
+## Typography
+
+- Use `Inter Variable`, `Inter`, `ui-sans-serif`, `system-ui`, sans-serif.
+- Type scale: hero `text-4xl` to `text-6xl`, section titles `text-3xl` to `text-5xl`, card titles `text-lg` to `text-xl`, body `text-sm` to `text-lg`, metadata/nav `text-sm`.
+- Keep line-height generous: around `1.5` to `1.7` for body, tighter for headings.
+- Keep text measure readable: body copy should usually stay near `max-w-prose` or `max-w-xl`.
+- Writing style should be calm, direct, informative, warm, and non-jargon-heavy. Avoid hype, urgency, and salesy language.
+- Buttons and links should stay comfortable and legible: use small-to-medium text, around `px-6 py-3`, with clear hover and focus states.
+
+## Spacing
+
+- Use an `8px` spacing logic with compact exceptions only where needed.
+- Preserve generous section rhythm; major sections should feel breathable rather than dense.
+- Keep root section spacing large, similar to `--spacing-section-y: clamp(3.5rem, 8vw, 7rem)`.
+- Use roomy grid gaps for cards and two-column layouts; mobile stacks should still keep clear vertical separation.
+- Allow readable whitespace around headings, buttons, and short paragraphs instead of packing content tightly.
+
+## Colour
+
+- Prefer a neutral-first palette: white or off-white backgrounds, charcoal text, soft gray borders, and pale gray surfaces.
+- Use the existing muted accent family sparingly, such as `--color-accent: #8f7679` and `--color-accent-muted: #a89093`.
+- Accent color should appear as emphasis, not atmosphere: key blocks, restrained highlights, and selective CTA support.
+- Most sections should remain neutral so the accent feels intentional and calm.
+
+## Layout
+
+- Default main content width should stay around `max-w-6xl`, with narrower text columns inside when readability matters.
+- Favor modular sections with clear scan paths: two-column hero, multi-card service grids, alternating text and visual blocks, concise footer.
+- Keep vertical rhythm consistent between sections and inside them.
+- Avoid forcing full-screen section heights unless a hero clearly benefits; prefer content-led height.
+- Maintain strong alignment, simple grids, and clear edges over decorative layout tricks.
+
+## Art Direction
+
+- Theme: calming, grounded, trustworthy, informative, and emotionally steady.
+- Draw inspiration from Brooklyn Org's hierarchy, whitespace, and editorial structure, not its civic urgency.
+- Imagery, placeholders, and surfaces should feel soft and minimal rather than loud or campaign-like.
+- Favor understated polish: gentle contrast, muted fills, quiet borders, and simple geometry.
+- Every page should feel easy to scan, easy to trust, and never overwhelming.

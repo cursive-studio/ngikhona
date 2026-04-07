@@ -1,0 +1,183 @@
+---
+import "@fontsource-variable/inter";
+import "../styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "Ngikhona — Psychotherapy in South London",
+	description = "Psychotherapy services and therapy spaces in South London. Ngikhona offers thoughtful, human-centred care.",
+} = Astro.props;
+
+const nav = [
+	{ href: "/#services", label: "Services" },
+	{ href: "/spaces", label: "Spaces" },
+	{ href: "/#team", label: "Team" },
+	{ href: "/#contact", label: "Contact" },
+];
+
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+	</head>
+	<body class="flex min-h-screen flex-col">
+		<a
+			href="#main-content"
+			class="absolute left-[-9999px] top-0 z-100 whitespace-nowrap rounded bg-neutral-900 px-4 py-2 text-white focus:left-4 focus:top-4 focus:outline-none"
+		>
+			Skip to main content
+		</a>
+		<header class="sticky top-0 z-40 border-b border-neutral-200/80 bg-white/95 backdrop-blur-sm">
+			<div class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4 lg:px-8">
+				<a href="/" class="text-lg font-semibold tracking-tight text-neutral-900">Ngikhona</a>
+
+				<nav
+					class="hidden items-center gap-8 md:flex"
+					aria-label="Primary"
+				>
+					{
+						nav.map((item) => (
+							<a
+								href={item.href}
+								class="text-sm text-neutral-600 transition-colors hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+							>
+								{item.label}
+							</a>
+						))
+					}
+				</nav>
+
+				<button
+					type="button"
+					id="menu-toggle"
+					class="flex h-11 w-11 items-center justify-center rounded-sm text-neutral-900 md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+					aria-expanded="false"
+					aria-controls="mobile-nav"
+					aria-label="Open menu"
+				>
+					<svg
+						class="h-6 w-6"
+						aria-hidden="true"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.75"
+						stroke-linecap="round"
+					>
+						<path d="M4 7h16" />
+						<path d="M4 12h16" />
+						<path d="M4 17h16" />
+					</svg>
+				</button>
+			</div>
+		</header>
+
+		<div
+			id="mobile-nav"
+			class="mobile-nav-overlay fixed inset-0 z-50 hidden min-h-dvh w-full flex-col bg-white md:hidden"
+			aria-hidden="true"
+			role="dialog"
+			aria-modal="true"
+			aria-label="Site menu"
+		>
+			<div class="flex shrink-0 items-center justify-end border-b border-neutral-200/80 px-6 py-4">
+				<button
+					type="button"
+					id="menu-close"
+					class="flex h-11 w-11 items-center justify-center rounded-sm text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+					aria-label="Close menu"
+				>
+					<svg class="h-6 w-6" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75">
+						<path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+					</svg>
+				</button>
+			</div>
+			<nav
+				class="flex flex-1 flex-col items-center justify-center gap-10 px-6 pb-16"
+				aria-label="Primary"
+			>
+				{
+					nav.map((item) => (
+						<a
+							href={item.href}
+							class="text-center text-xl font-medium text-neutral-800 transition-colors hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900"
+						>
+							{item.label}
+						</a>
+					))
+				}
+			</nav>
+		</div>
+
+		<main id="main-content" class="flex-1">
+			<slot />
+		</main>
+		<footer class="border-t border-neutral-200/80 bg-neutral-50 py-10 text-center text-sm text-neutral-500">
+			<div class="mx-auto max-w-6xl space-y-3 px-6 lg:px-8">
+				<p class="text-neutral-600">&copy; {year} Ngikhona. All rights reserved.</p>
+				<p class="mx-auto max-w-lg text-xs leading-relaxed text-neutral-500">
+					Placeholder: registered address, professional body memberships, and privacy or accessibility
+					links can be listed here in a single calm block.
+				</p>
+			</div>
+		</footer>
+
+		<script is:inline>
+			function initMobileNav() {
+				const toggle = document.getElementById("menu-toggle");
+				const closeBtn = document.getElementById("menu-close");
+				const overlay = document.getElementById("mobile-nav");
+				if (!toggle || !overlay) return;
+
+				const open = () => {
+					overlay.classList.remove("hidden");
+					overlay.classList.add("flex");
+					overlay.setAttribute("aria-hidden", "false");
+					toggle.setAttribute("aria-expanded", "true");
+					toggle.setAttribute("aria-label", "Close menu");
+					document.body.classList.add("overflow-hidden");
+					closeBtn?.focus();
+				};
+
+				const shut = () => {
+					overlay.classList.add("hidden");
+					overlay.classList.remove("flex");
+					overlay.setAttribute("aria-hidden", "true");
+					toggle.setAttribute("aria-expanded", "false");
+					toggle.setAttribute("aria-label", "Open menu");
+					document.body.classList.remove("overflow-hidden");
+					toggle.focus();
+				};
+
+				toggle.addEventListener("click", () => {
+					if (overlay.classList.contains("hidden")) open();
+					else shut();
+				});
+
+				closeBtn?.addEventListener("click", shut);
+
+				overlay.querySelectorAll("a").forEach((link) => {
+					link.addEventListener("click", shut);
+				});
+
+				document.addEventListener("keydown", (e) => {
+					if (e.key === "Escape" && !overlay.classList.contains("hidden")) shut();
+				});
+			}
+
+			initMobileNav();
+		</script>
+	</body>
+</html>

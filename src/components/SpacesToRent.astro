@@ -1,0 +1,54 @@
+---
+import Button from "./Button.astro";
+import SectionHeader from "./SectionHeader.astro";
+---
+
+<section
+	id="spaces"
+	aria-labelledby="spaces-heading"
+	class="border-b border-neutral-200/80 bg-neutral-50"
+	style={`padding-top: var(--spacing-section-y); padding-bottom: var(--spacing-section-y);`}
+>
+	<div class="mx-auto max-w-6xl px-6 lg:px-8">
+		<div class="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+			<div class="flex flex-col gap-8">
+				<SectionHeader
+					label="Spaces to rent"
+					title="Spaces to rent"
+					titleId="spaces-heading"
+					class="mb-6! md:mb-8!"
+				/>
+				<div class="flex max-w-xl flex-col gap-5 text-base leading-relaxed text-neutral-600 md:text-lg">
+					<p>
+						Quiet, well-appointed therapy rooms available for clinicians looking for a professional
+						base in South London. Flexible terms and a supportive practice environment.
+					</p>
+					<p>
+						Placeholder copy: you might mention room sizes, natural light, shared waiting areas,
+						booking rhythm, and what is included (for example Wi‑Fi, refreshments, or storage).
+					</p>
+					<p class="text-base text-neutral-600">
+						Dummy line for logistics: half-day and full-day slots, online calendar hold, and a short
+						orientation for new renters.
+					</p>
+				</div>
+				<div class="flex flex-wrap gap-4">
+					<Button href="/spaces">View spaces</Button>
+					<Button href="/#contact" variant="outline">Get in touch</Button>
+				</div>
+			</div>
+			<div
+				class="flex aspect-4/3 w-full flex-col items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100/80 p-8 text-center"
+				role="img"
+				aria-label="Placeholder for clinic space photograph"
+			>
+				<span class="text-xs font-medium tracking-widest text-neutral-400 uppercase">
+					Image placeholder
+				</span>
+				<span class="mt-2 max-w-xs text-sm leading-relaxed text-neutral-500">
+					Replace with a photograph of the consulting room or building exterior when available.
+				</span>
+			</div>
+		</div>
+	</div>
+</section>
