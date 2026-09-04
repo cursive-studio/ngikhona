@@ -6,96 +6,114 @@ interface RoomDetail {
 	value: string;
 }
 
+interface RoomImage {
+	src: string;
+	alt: string;
+	position?: string;
+}
+
 interface Props {
 	title: string;
 	description: string;
 	details: RoomDetail[];
+	images: RoomImage[];
+	surfaceColor?: string;
+	frameColor?: string;
 	/** When true, image stack is on the left (room one). When false, images on the right (room two). */
 	imagesFirst?: boolean;
 }
 
-const { title, description, details, imagesFirst = true } = Astro.props;
+const {
+	title,
+	description,
+	details,
+	images,
+	surfaceColor = "#f5f3ee",
+	frameColor = "#babed4",
+	imagesFirst = true,
+} = Astro.props;
 ---
 
-<section class="border-b border-neutral-200/60 bg-neutral-100">
+<section
+	class="room-section border-b border-brand-ink/10"
+	style={`background-color: ${surfaceColor};`}
+>
 	<div
-		class="mx-auto max-w-6xl px-6 lg:px-8"
-		style={`padding-top: var(--spacing-section-y); padding-bottom: var(--spacing-section-y);`}
+		class="room-layout site-grid items-start gap-y-12"
 	>
-		<div class="grid items-start gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
-			{
-				imagesFirst ? (
-					<>
-						<div class="flex flex-col gap-4">
-							{[1, 2, 3].map((i) => (
-								<div
-									class="aspect-square w-full max-w-md rounded-sm border border-neutral-200 bg-white shadow-sm"
-									role="img"
-									aria-label={`Photograph placeholder ${i} for ${title}`}
-								/>
-							))}
-						</div>
-						<div class="flex flex-col gap-8">
-							<h2 class="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl lg:text-5xl">
-								{title}
-							</h2>
-							<p class="max-w-xl text-base leading-relaxed text-neutral-600 md:text-lg">
-								{description}
-							</p>
-							<dl class="grid max-w-lg grid-cols-2 gap-x-8 gap-y-6">
-								{details.map((d) => (
-									<div>
-										<dt class="text-xs font-medium tracking-widest text-neutral-500 uppercase">
-											{d.label}
-										</dt>
-										<dd class="mt-1.5 text-base text-neutral-900">{d.value}</dd>
-									</div>
-								))}
-							</dl>
-							<div class="pt-2">
-								<Button href="#enquire" variant="outline" class="w-full min-w-48 justify-center sm:w-auto">
-									Check availability
-								</Button>
-							</div>
-						</div>
-					</>
-				) : (
-					<>
-						<div class="flex flex-col gap-8">
-							<h2 class="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl lg:text-5xl">
-								{title}
-							</h2>
-							<p class="max-w-xl text-base leading-relaxed text-neutral-600 md:text-lg">
-								{description}
-							</p>
-							<dl class="grid max-w-lg grid-cols-2 gap-x-8 gap-y-6">
-								{details.map((d) => (
-									<div>
-										<dt class="text-xs font-medium tracking-widest text-neutral-500 uppercase">
-											{d.label}
-										</dt>
-										<dd class="mt-1.5 text-base text-neutral-900">{d.value}</dd>
-									</div>
-								))}
-							</dl>
-							<div class="pt-2">
-								<Button href="#enquire" variant="outline" class="w-full min-w-48 justify-center sm:w-auto">
-									Check availability
-								</Button>
-							</div>
-						</div>
-						<div class="flex flex-col gap-4">
-							{[1, 2, 3].map((i) => (
-								<div
-									class="aspect-square w-full max-w-md justify-self-end rounded-sm border border-neutral-200 bg-white shadow-sm lg:ml-auto"
-									role="img"
-									aria-label={`Photograph placeholder ${i} for ${title}`}
-								/>
-							))}
-						</div>
-					</>
-				)
-			}
+		<div class:list={["col-span-4 md:col-span-6", imagesFirst ? "md:order-1" : "md:order-2 md:col-start-7"]}>
+			<figure
+				class="rounded-[1.25rem] p-2 shadow-[0_1px_0_oklch(0_0_0/0.08)] md:p-3"
+				style={`background-color: ${frameColor};`}
+			>
+				<img
+					src={images[0].src}
+					alt={images[0].alt}
+					class="aspect-4/3 w-full rounded-xl object-cover outline-1 -outline-offset-1 outline-black/10"
+					style={`object-position: ${images[0].position ?? "center"};`}
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+			<div class="mt-4 grid grid-cols-2 gap-4 [&>*:only-child]:col-span-2">
+				{images.slice(1).map((image) => (
+					<img
+						src={image.src}
+						alt={image.alt}
+						class="aspect-square h-full w-full rounded-xl object-cover outline-1 -outline-offset-1 outline-black/10"
+						style={`object-position: ${image.position ?? "center"};`}
+						loading="lazy"
+						decoding="async"
+					/>
+				))}
+			</div>
+		</div>
+
+		<div class:list={["room-copy col-span-4 flex flex-col gap-7 md:col-span-5", imagesFirst ? "md:order-2 md:col-start-8" : "md:order-1"]}>
+			<h2 class="room-title font-brand font-normal tracking-[-0.035em] text-brand-ink">
+				{title}
+			</h2>
+			<p class="max-w-xl text-base leading-[1.5] text-brand-muted md:text-lg">{description}</p>
+			<dl class="grid max-w-lg grid-cols-2 gap-x-8 gap-y-6">
+				{details.map((detail) => (
+					<div>
+						<dt class="text-xs font-medium tracking-widest text-brand-muted uppercase">{detail.label}</dt>
+						<dd class="mt-1.5 text-base text-brand-ink">{detail.value}</dd>
+					</div>
+				))}
+			</dl>
+			<div class="pt-2">
+				<Button href="#enquire" variant="outline" class="w-full min-w-48 justify-center sm:w-auto">
+					Check availability
+				</Button>
+			</div>
 		</div>
 	</div>
 </section>
+
+<style>
+	.room-layout {
+		padding-block: 5rem;
+	}
+
+	.room-title {
+		font-size: 2.5rem;
+		line-height: 1.05;
+	}
+
+	@media (min-width: 48rem) {
+		.room-layout {
+			padding-block: 6.5rem;
+		}
+
+		.room-title {
+			font-size: 3rem;
+		}
+
+		.room-copy {
+			position: sticky;
+			top: 7rem;
+			align-self: start;
+		}
+	}
+</style>

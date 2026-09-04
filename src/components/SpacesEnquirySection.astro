@@ -10,41 +10,26 @@ const roomOptions = ["Room one", "Room two", "Either / not sure"];
 
 <section
 	id="enquire"
-	class="border-b border-neutral-200/80 bg-neutral-100"
+	class="spaces-enquiry-section border-b border-brand-ink/10"
 	aria-labelledby="spaces-enquiry-heading"
-	style={`padding-top: var(--spacing-section-y); padding-bottom: var(--spacing-section-y);`}
 >
-	<div class="mx-auto max-w-6xl px-6 lg:px-8">
-		<div class="mx-auto max-w-3xl text-center">
+	<div class="site-grid items-start gap-y-12">
+		<header class="col-span-4 md:col-span-5">
+			<p class="mb-7 text-sm leading-none font-normal text-brand-ink">Availability</p>
 			<h2
 				id="spaces-enquiry-heading"
-				class="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl"
+				class="spaces-enquiry-title font-brand max-w-[28rem] font-normal tracking-[-0.035em] text-brand-ink [text-wrap:balance]"
 			>
 				Enquire about a space
 			</h2>
-			<p class="mt-4 text-base text-neutral-600 md:text-lg">
+			<p class="mt-6 max-w-sm text-base leading-[1.5] text-brand-muted md:text-lg">
 				Please fill out the form below.
 			</p>
-		</div>
+		</header>
 
-		<div
-			class="mx-auto mt-12 max-w-2xl rounded-sm border border-neutral-200/80 bg-white p-8 shadow-sm md:p-10 lg:p-12"
-		>
+		<div class="col-span-4 border-t border-brand-ink/20 pt-8 md:col-start-7 md:col-span-6 md:pt-10">
 			<form class="flex flex-col gap-8" name="space-enquiry" method="POST" action={formAction}>
-				{
-					formAction ? (
-						<>
-							<input type="hidden" name="_subject" value="Ngikhona — space rental enquiry" />
-						</>
-					) : (
-						<p class="rounded border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
-							Add{" "}
-							<code class="rounded bg-white px-1 py-0.5 text-xs">PUBLIC_FORMSPREE_ID</code> to your{" "}
-							<code class="rounded bg-white px-1 py-0.5 text-xs">.env</code> file to enable form
-							submissions (Formspree).
-						</p>
-					)
-				}
+				{formAction && <input type="hidden" name="_subject" value="Ngikhona — space rental enquiry" />}
 
 				<div class="grid gap-8 sm:grid-cols-2 sm:gap-6">
 					<div class="flex flex-col gap-2">
@@ -131,7 +116,7 @@ const roomOptions = ["Room one", "Room two", "Either / not sure"];
 				<button
 					type="submit"
 					disabled={!formAction}
-					class="w-full bg-neutral-900 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 disabled:cursor-not-allowed disabled:opacity-50"
+					class="min-h-11 w-fit rounded-sm bg-brand-sand px-6 py-3 text-sm font-medium text-brand-ink transition-colors hover:bg-brand-ink hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-ink disabled:cursor-not-allowed disabled:border disabled:border-brand-muted/35 disabled:bg-transparent disabled:text-brand-muted"
 				>
 					Send enquiry
 				</button>
@@ -141,7 +126,27 @@ const roomOptions = ["Room one", "Room two", "Either / not sure"];
 </section>
 
 <style>
+	.spaces-enquiry-section {
+		background: #f5f3ee;
+		padding-block: 5rem;
+	}
+
+	.spaces-enquiry-title {
+		font-size: 2.5rem;
+		line-height: 1.05;
+	}
+
 	.spaces-enquiry-select {
 		background-image: none;
+	}
+
+	@media (min-width: 48rem) {
+		.spaces-enquiry-section {
+			padding-block: 6.5rem;
+		}
+
+		.spaces-enquiry-title {
+			font-size: 3rem;
+		}
 	}
 </style>

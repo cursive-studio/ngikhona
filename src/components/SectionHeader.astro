@@ -10,12 +10,12 @@ const { label, title, class: className = "", titleId } = Astro.props;
 ---
 
 <header class:list={["mb-10 md:mb-14", className]}>
-	<p class="mb-3 text-xs font-medium tracking-widest text-neutral-500 uppercase">
+	<p class="mb-3 text-xs font-semibold tracking-widest text-brand-ink/70 uppercase">
 		{label}
 	</p>
 	<h2
 		id={titleId}
-		class="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-neutral-900 md:text-4xl lg:text-5xl"
+		class="font-brand max-w-3xl text-3xl font-semibold leading-tight tracking-normal text-brand-ink md:text-4xl lg:text-5xl"
 	>
 		{title}
 	</h2>

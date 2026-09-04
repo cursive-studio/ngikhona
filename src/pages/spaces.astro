@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
 import SpaceRoomDetail from "../components/SpaceRoomDetail.astro";
 import SpacesEnquirySection from "../components/SpacesEnquirySection.astro";
 
@@ -25,48 +26,83 @@ const roomTwoDetails = [
 <Layout {title} {description}>
 	<section
 		id="top"
-		class="border-b border-neutral-200/80 bg-white"
+		class="spaces-hero border-b border-brand-ink/10 flex"
 		aria-labelledby="spaces-hero-heading"
-		style={`padding-top: var(--spacing-section-y); padding-bottom: var(--spacing-section-y);`}
 	>
-		<div class="mx-auto max-w-6xl px-6 lg:px-8">
-			<div class="max-w-3xl">
+		<div class="site-grid w-full">
+			<div class="col-span-4 max-w-[55rem] md:col-span-8">
+				<p class="mb-7 text-sm leading-none font-normal text-brand-ink">Spaces to rent</p>
 				<h1
 					id="spaces-hero-heading"
-					class="text-4xl font-semibold leading-tight tracking-tight text-neutral-900 md:text-5xl lg:text-6xl"
+					class="spaces-hero-title font-brand font-normal tracking-[-0.04em] text-brand-ink [text-wrap:balance]"
 				>
 					Therapy rooms available to rent in South London
 				</h1>
-				<p class="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-600">
+				<p class="mt-7 max-w-2xl text-lg leading-[1.5] text-brand-muted [text-wrap:pretty]">
 					Quiet, well-appointed consulting rooms for qualified clinicians. Replace this paragraph
 					with details about the building, access, shared facilities, and what makes the space
 					suitable for therapeutic work.
 				</p>
 				<div class="mt-8">
-					<a
-						href="#enquire"
-						class="inline-flex items-center justify-center rounded-sm bg-neutral-200 px-6 py-3 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
-					>
-						Get in touch
-					</a>
+					<Button href="#enquire" variant="outline">Get in touch</Button>
 				</div>
 			</div>
 		</div>
+
+		<!-- image of the building -->
+		<div class="w-full pr-12 rounded-lg overflow-hidden">
+			<img src="/images/space/IMG_1215.jpeg" alt="The building" class="w-full h-full object-cover rounded-lg" />
+		</div>
 	</section>
 
-	<SpaceRoomDetail
+		<SpaceRoomDetail
 		title="Room one"
 		description="Placeholder description: natural light, comfortable seating, and sound-treated doors suitable for confidential conversation. Summarise what a renter can expect when using this room day to day."
-		details={roomOneDetails}
-		imagesFirst={true}
+			details={roomOneDetails}
+			images={[
+				{ src: "/images/space/IMG_1109.jpeg", alt: "A bright consulting room with three windows." },
+				{ src: "/images/space/IMG_1113.jpeg", alt: "The room's compact kitchenette and storage area." },
+				{ src: "/images/space/IMG_1205.jpeg", alt: "A light-filled room with two windows and open floor space." },
+			]}
+			imagesFirst={true}
+			surfaceColor="#f5f3ee"
+			frameColor="#babed4"
 	/>
 
 	<SpaceRoomDetail
 		title="Room two"
 		description="Placeholder description: a second consulting space with its own character — note differences in size, aspect, or furnishings compared with room one so visitors can choose what suits their practice."
-		details={roomTwoDetails}
+			details={roomTwoDetails}
+			images={[
+				{ src: "/images/space/nikons-room.jpg", alt: "A quiet room with built-in storage and natural light." },
+				{ src: "/images/space/IMG_1215.jpeg", alt: "The entrance to the practice at Camberwell's The Playhouse." },
+			]}
 		imagesFirst={false}
+		surfaceColor="#ede7da"
+		frameColor="#ddd6a1"
 	/>
 
 	<SpacesEnquirySection />
 </Layout>
+
+<style>
+	.spaces-hero {
+		background: #ede7da;
+		padding-block: 5rem;
+	}
+
+	.spaces-hero-title {
+		font-size: 3rem;
+		line-height: 1.03;
+	}
+
+	@media (min-width: 48rem) {
+		.spaces-hero {
+			padding-block: 6.5rem;
+		}
+
+		.spaces-hero-title {
+			font-size: 4rem;
+		}
+	}
+</style>

@@ -1,43 +1,68 @@
-# Astro Starter Kit: Minimal
+# Ngikhona
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Website for Ngikhona, a psychotherapy practice based in Camberwell, South London.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Ngikhona provides psychotherapy services for the local community and offers calm, confidential rooms available to rent by qualified clinicians.
 
-## 🚀 Project Structure
+## Website Overview
 
-Inside of your Astro project, you'll see the following folders and files:
+The site currently includes:
+
+- A homepage introducing Ngikhona and its work in South London
+- Service sections for 1:1 therapy, group therapy, child psychotherapy, and body work
+- A team section for practitioner profiles
+- A contact section for enquiries
+- A dedicated spaces page for therapy rooms available to rent
+
+## Tech Stack
+
+- [Astro](https://astro.build/)
+- Tailwind CSS
+- Variable fonts via `@fontsource-variable`
+
+## Project Structure
 
 ```text
 /
 ├── public/
+│   └── images/
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/
+│   ├── layouts/
+│   ├── pages/
+│   └── styles/
+├── astro.config.mjs
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Astro pages live in `src/pages/`. Shared sections and UI elements live in `src/components/`, with global styles in `src/styles/global.css`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Development
 
-Any static assets, like images, can be placed in the `public/` directory.
+Install dependencies:
 
-## 🧞 Commands
+```sh
+npm install
+```
 
-All commands are run from the root of the project, from a terminal:
+Start the local development server:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```sh
+npm run dev
+```
 
-## 👀 Want to learn more?
+Build for production:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```sh
+npm run build
+```
+
+Preview the production build locally:
+
+```sh
+npm run preview
+```
+
+## Content Notes
+
+Some content is still placeholder copy, especially practitioner biographies, room rental details, professional registration information, and footer/legal links. These should be replaced with confirmed practice information before launch.

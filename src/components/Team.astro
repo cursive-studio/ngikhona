@@ -1,16 +1,22 @@
 ---
-import SectionHeader from "./SectionHeader.astro";
-
 const members = [
 	{
 		name: "Anthea Benjamin",
 		role: "Child and adolescent psychotherapist",
-		bio: "Dummy biography: training background, professional registrations, and areas of clinical interest can be summarised here in two to four sentences. Replace with accurate credentials and a warm, factual tone.",
+		bio: [
+			"Anthea Benjamin is a UKCP-registered integrative arts psychotherapist, adolescent therapist, play therapist, group analyst, Somatic Experiencing therapist, trainer, supervisor, organisational consultant and writer.",
+			"Anthea has worked extensively with children, adolescents, adults, families, couples and groups for over 20 years in settings including schools, community projects and the NHS. She works as a therapist and delivers training and consultancy in a range of professional and educational contexts.",
+			"She also offers therapeutic services including self-reflective groups and team supervision, both within organisations and through her private practice in South London. Anthea has a special interest in racial trauma, particularly how racial trauma is held in the body.",
+		],
+		imageSrc: "/images/team/Anthea Yellow flowers.JPG",
+		imagePosition: "center 24%",
 	},
 	{
 		name: "Maxine Dennis",
 		role: "Psychotherapist",
-		bio: "Dummy biography: include therapeutic orientation, languages spoken if relevant, and the kinds of difficulties you most often work with. Avoid superlatives; clarity and steadiness read better on a practice site.",
+		bio: ["Maxine’s full biography will be added here."],
+		imageSrc: "/images/hero-1.png",
+		imagePosition: "center",
 	},
 ];
 ---
@@ -18,44 +24,295 @@ const members = [
 <section
 	id="team"
 	aria-labelledby="team-heading"
-	class="border-b border-neutral-200/80 bg-neutral-50"
-	style={`padding-top: var(--spacing-section-y); padding-bottom: var(--spacing-section-y);`}
+	class="team-section py-20 md:py-[6.5rem]"
 >
-	<div class="mx-auto max-w-6xl px-6 lg:px-8">
-		<SectionHeader
-			label="The team"
-			title="Who we are"
-			titleId="team-heading"
-			class="mb-5! md:mb-6!"
-		/>
-		<p class="mb-12 max-w-2xl text-base leading-relaxed text-neutral-600 md:mb-14 md:text-lg">
-			Placeholder introduction: a short line about how the team works together, supervision, and what
-			shared values shape the practice helps visitors orient before they read individual profiles.
-		</p>
-		<div class="grid gap-14 md:grid-cols-2 md:gap-12 lg:gap-16">
+	<div class="team-inner">
+		<header class="team-header text-center">
+			<p class="font-sans text-xs leading-none font-normal tracking-[0.08em] text-brand-sand uppercase">Who</p>
+			<h2
+				id="team-heading"
+				class="mt-4 font-brand text-[26px] leading-[1.05] font-normal tracking-[-0.035em] text-brand-ink [text-wrap:balance] md:text-[28px]"
+			>
+				Meet our therapists
+			</h2>
+		</header>
+
+		<div class="team-list mt-16 gap-4 md:mt-20 md:gap-16">
 			{
-				members.map((member) => (
-					<article class="flex flex-col gap-6">
-						<div
-							class="flex aspect-3/4 w-full max-w-md flex-col items-center justify-center rounded-sm border border-neutral-200 bg-neutral-200/80 p-6 text-center"
-							role="img"
-							aria-label={`Portrait placeholder for ${member.name}`}
-						>
-							<span class="text-xs font-medium tracking-widest text-neutral-500 uppercase">
-								Photo placeholder
-							</span>
-							<span class="mt-2 text-sm text-neutral-500">
-								Headshot or illustrated portrait can replace this block.
-							</span>
-						</div>
-						<div class="flex max-w-prose flex-col gap-2">
-							<h3 class="text-xl font-semibold text-neutral-900">{member.name}</h3>
-							<p class="text-sm font-medium text-neutral-500">{member.role}</p>
-							<p class="text-base leading-relaxed text-neutral-600">{member.bio}</p>
-						</div>
-					</article>
-				))
+				members.map((member, index) => {
+					const modalId = `team-member-${index}`;
+
+					return (
+						<>
+							<article class="team-card gap-4 md:gap-6 min-[75rem]:gap-[1.625rem]">
+								<figure class="team-portrait m-0">
+									<img
+										src={member.imageSrc}
+										alt=""
+										class="h-full w-full object-cover outline-1 -outline-offset-1 outline-black/10"
+										style={`object-position: ${member.imagePosition};`}
+										loading="lazy"
+										decoding="async"
+									/>
+								</figure>
+
+								<div class="team-copy">
+									<div>
+									<h3 class="font-brand text-[22px] leading-none font-normal tracking-[-0.035em] text-brand-ink [text-wrap:balance] md:text-2xl">
+											{member.name}
+										</h3>
+									<p class="mt-2 text-sm leading-[1.5] font-normal text-[#281102] md:text-base">{member.role}</p>
+									<p class="mt-4 text-sm leading-[1.5] font-normal text-brand-ink [text-wrap:pretty] md:mt-3 md:text-base">{member.bio[0]}</p>
+									</div>
+
+									<button
+										type="button"
+									class="team-cta mt-auto min-h-11 w-fit pt-4 text-sm leading-none text-brand-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-ink md:mt-6 md:pt-0 min-[75rem]:mt-auto min-[75rem]:pt-4"
+										data-team-modal-open={modalId}
+										aria-haspopup="dialog"
+										aria-controls={modalId}
+									>
+										Learn more
+									</button>
+								</div>
+							</article>
+
+							<dialog
+								id={modalId}
+								class="t-modal team-modal m-auto w-[calc(100%-2rem)] max-w-[44rem] rounded-[1.5rem]  p-0 text-brand-ink "
+								aria-labelledby={`${modalId}-title`}
+								aria-describedby={`${modalId}-bio`}
+							>
+								<div class="relative p-6 md:p-10">
+									<button
+										type="button"
+										class="absolute top-4 right-4 flex h-11 w-11 items-center justify-center rounded-full border border-brand-ink/15 text-brand-ink transition-colors duration-150 hover:bg-brand-ink hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-ink md:top-6 md:right-6"
+										data-team-modal-close
+										aria-label={`Close ${member.name} biography`}
+									>
+										<svg
+											class="h-5 w-5"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="1.5"
+											stroke-linecap="round"
+											aria-hidden="true"
+										>
+											<path d="M6 6l12 12M18 6 6 18" />
+										</svg>
+									</button>
+
+									<p class="mb-4 text-sm text-brand-muted">{member.role}</p>
+									<h3
+										id={`${modalId}-title`}
+										class="font-brand max-w-[34rem] pr-12 text-[2.5rem] leading-[1.05] font-normal tracking-[-0.035em]"
+									>
+										{member.name}
+									</h3>
+									<div
+										id={`${modalId}-bio`}
+									class="mt-8 max-w-[38rem] space-y-5 text-base leading-[1.5] font-normal text-brand-muted [text-wrap:pretty]"
+									>
+										{member.bio.map((paragraph) => <p>{paragraph}</p>)}
+									</div>
+								</div>
+							</dialog>
+						</>
+					);
+				})
 			}
 		</div>
 	</div>
 </section>
+
+<style>
+	.team-section {
+		background: #f7f6f2;
+	}
+
+	.team-inner {
+		width: min(100% - 2rem, 98rem);
+		margin-inline: auto;
+	}
+
+	.team-header {
+		margin-inline: auto;
+	}
+
+	.team-list {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		align-items: stretch;
+	}
+
+	.team-card {
+		display: flex;
+		min-width: 0;
+		flex-direction: column;
+	}
+
+	.team-portrait {
+		aspect-ratio: 4 / 5;
+		overflow: hidden;
+		border-radius: 0.375rem;
+	}
+
+	.team-copy {
+		display: flex;
+		flex: 1;
+		min-width: 0;
+		flex-direction: column;
+	}
+
+	.team-cta {
+		position: relative;
+		text-align: left;
+		text-decoration-line: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.25em;
+		transition-property: text-decoration-color, transform;
+		transition-duration: 150ms;
+	}
+
+	.team-cta:hover {
+		text-decoration-color: currentColor;
+	}
+
+	.team-cta:active {
+		transform: scale(0.96);
+	}
+
+	.team-modal {
+		border: 1px solid rgb(32 40 39 / 10%);
+		max-height: min(82vh, 52rem);
+		overflow-y: auto;
+	}
+
+	.team-modal::backdrop {
+		background: rgb(32 40 39 / 52%);
+		backdrop-filter: blur(3px);
+	}
+
+	.t-modal {
+		transform-origin: center;
+		transform: scale(var(--modal-scale));
+		opacity: 0;
+		pointer-events: none;
+		transition:
+			transform var(--modal-open-dur) var(--modal-ease),
+			opacity   var(--modal-open-dur) var(--modal-ease);
+		will-change: transform, opacity;
+	}
+	.t-modal.is-open {
+		transform: scale(1);
+		opacity: 1;
+		pointer-events: auto;
+	}
+	.t-modal.is-closing {
+		transform: scale(var(--modal-scale-close));
+		opacity: 0;
+		pointer-events: none;
+		transition:
+			transform var(--modal-close-dur) var(--modal-ease),
+			opacity   var(--modal-close-dur) var(--modal-ease);
+	}
+
+	@media (min-width: 40rem) {
+		.team-inner {
+			width: min(100% - 6rem, 98rem);
+		}
+
+		.team-list {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.team-card {
+			display: grid;
+			grid-template-columns: minmax(15rem, 20rem) minmax(0, 1fr);
+		}
+	}
+
+	@media (min-width: 75rem) {
+		.team-list {
+			grid-template-columns: repeat(2, minmax(0, 43.625rem));
+			justify-content: space-between;
+			column-gap: 4rem;
+		}
+
+		.team-card {
+			grid-template-columns: minmax(15rem, 19.75rem) minmax(0, 1fr);
+		}
+
+		.team-copy {
+			padding-block: 2.5rem 2rem;
+		}
+
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.t-modal { transition: none !important; }
+	}
+</style>
+
+<script is:inline>
+	function initTeamModals() {
+		const closeMs =
+			parseFloat(
+				getComputedStyle(document.documentElement).getPropertyValue("--modal-close-dur"),
+			) || 150;
+		let lastTrigger = null;
+
+		function openModal(modal, trigger) {
+			lastTrigger = trigger;
+			modal.classList.remove("is-closing");
+			modal.showModal();
+			document.body.classList.add("overflow-hidden");
+			requestAnimationFrame(() => modal.classList.add("is-open"));
+		}
+
+		function closeModal(modal) {
+			if (!modal.open || modal.classList.contains("is-closing")) return;
+			modal.classList.remove("is-open");
+			modal.classList.add("is-closing");
+			setTimeout(() => {
+				modal.close();
+				modal.classList.remove("is-closing");
+				document.body.classList.remove("overflow-hidden");
+				lastTrigger?.focus();
+			}, closeMs);
+		}
+
+		document.querySelectorAll("[data-team-modal-open]").forEach((trigger) => {
+			trigger.addEventListener("click", () => {
+				const modal = document.getElementById(trigger.dataset.teamModalOpen);
+				if (modal instanceof HTMLDialogElement) openModal(modal, trigger);
+			});
+		});
+
+		document.querySelectorAll(".team-modal").forEach((modal) => {
+			if (!(modal instanceof HTMLDialogElement)) return;
+
+			modal.querySelector("[data-team-modal-close]")?.addEventListener("click", () => {
+				closeModal(modal);
+			});
+
+			modal.addEventListener("cancel", (event) => {
+				event.preventDefault();
+				closeModal(modal);
+			});
+
+			modal.addEventListener("click", (event) => {
+				const bounds = modal.getBoundingClientRect();
+				const isBackdrop =
+					event.clientX < bounds.left ||
+					event.clientX > bounds.right ||
+					event.clientY < bounds.top ||
+					event.clientY > bounds.bottom;
+				if (isBackdrop) closeModal(modal);
+			});
+		});
+	}
+
+	initTeamModals();
+</script>

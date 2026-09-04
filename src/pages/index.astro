@@ -4,13 +4,15 @@ import Hero from "../components/Hero.astro";
 import Services from "../components/Services.astro";
 import Team from "../components/Team.astro";
 import Contact from "../components/Contact.astro";
+import Approach from "../components/Approach.astro";
+import SpacesToRent from "../components/SpacesToRent.astro";
 ---
 
-<Layout>
+<Layout headerVariant="overlay">
 	<Hero />
+	<Approach />
 	<Services />
-	<!-- <SpacesToRent /> -->
-	<!-- <Approach /> -->
 	<Team />
+	<SpacesToRent />
 	<Contact />
 </Layout>

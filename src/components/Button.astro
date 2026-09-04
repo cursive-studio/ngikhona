@@ -2,21 +2,27 @@
 interface Props {
 	href: string;
 	variant?: "solid" | "outline";
+	size?: "default" | "compact";
 	class?: string;
 }
 
-const { href, variant = "solid", class: className = "" } = Astro.props;
+const { href, variant = "solid", size = "default", class: className = "" } = Astro.props;
 
 const base =
-	"inline-flex items-center justify-center px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900";
+	"inline-flex min-h-11 items-center justify-center rounded-[2px] font-normal transition-[background-color,color,transform] duration-150 active:scale-[0.96] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-ink";
+
+const sizes = {
+	default: "px-5 py-2.5 text-sm",
+	compact: "px-4 py-2 text-xs",
+} as const;
 
 const variants = {
-	solid: "bg-neutral-900 text-white hover:bg-neutral-800",
+	solid: "bg-brand-sand text-brand-ink hover:bg-brand-mint",
 	outline:
-		"border border-neutral-900 bg-transparent text-neutral-900 hover:bg-neutral-900 hover:text-white",
+		"border border-brand-ink bg-transparent text-brand-ink hover:bg-brand-ink hover:text-white",
 } as const;
 ---
 
-<a href={href} class:list={[base, variants[variant], className]}>
+<a href={href} class:list={[base, sizes[size], variants[variant], className]}>
 	<slot />
 </a>
